@@ -70,7 +70,7 @@ public class Node implements ICompilable {
         return (Node) this.parent;
     }
 
-    public Node addParameterField(String parameter, String value) {
+    public Node addParameterField(String parameter, Object value) {
         if (this.parametersField == null)
             this.parametersField = new ArrayList<>();
         ParameterField parameterField = new ParameterField(parameter, value);
