@@ -28,6 +28,10 @@ public class Main {
                 .buildNode()
                 .addEdge("name");
         System.out.println(query.compile);
+        
+        Request request = new Request(query.compile());
+        Result result = request.send(new URL("http://api.example.com/graphql/"));
+        System.out.println(result.data);
         return (0);
     }
 }
@@ -44,7 +48,26 @@ query {
     name
   }
 }
+
+{"data": {
+    "hero": [
+        {
+            "friends": [
+                {
+                    "friendsName": "Leia"
+                },
+                {
+                    "firendsName": "Han"
+                }
+            ],
+            "name": "Luke"
+        }
+     ]
+    }
+}
 ```
+
+
 
 ### TODO
 
