@@ -7,7 +7,7 @@ public class Edge implements ICompilable {
     private final String name;
     private String nesting;
 
-    public Edge(String name, String nesting) {
+    Edge(String name, String nesting) {
         this.name = name;
         this.nesting = nesting;
     }

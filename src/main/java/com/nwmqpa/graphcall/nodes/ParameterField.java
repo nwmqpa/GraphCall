@@ -7,7 +7,7 @@ public class ParameterField implements ICompilable {
     private final String parameter;
     private final Object value;
 
-    public ParameterField(String parameter, Object value) {
+    ParameterField(String parameter, Object value) {
         this.parameter = parameter;
         this.value = value;
     }
