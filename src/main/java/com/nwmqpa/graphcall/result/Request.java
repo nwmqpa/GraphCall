@@ -1,5 +1,6 @@
 package com.nwmqpa.graphcall.result;
 
+import com.nwmqpa.graphcall.interfaces.ICompilable;
 import com.nwmqpa.graphcall.interfaces.ISendable;
 import com.nwmqpa.graphcall.result.Result;
 
@@ -13,17 +14,11 @@ public class Request implements ISendable {
 
     private final String request;
 
-    public Request(String request, boolean debug) {
-        request = request.replace("\n", "\t").replace("\t", " ").replaceAll(" +", " ");
+    public Request(ICompilable nodes) {
+        String request = nodes.compile().replace("\n", "\t").replace("\t", " ").replaceAll(" +", " ");
         StringBuilder sb = new StringBuilder();
         sb.append("{\"query\": \"").append(request).append("\"}");
         this.request = sb.toString();
-        if (debug)
-            System.out.println(this.request);
-    }
-
-    public Request(String request) {
-        this(request, false);
     }
 
     @Override
@@ -47,7 +42,11 @@ public class Request implements ISendable {
             br.close();
             return new Result(sb.toString());
         } else {
-            return null;
+            throw new IOException();
         }
+    }
+
+    public String getRequest() {
+        return this.request;
     }
 }
