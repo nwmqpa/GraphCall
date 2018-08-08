@@ -13,12 +13,17 @@ public class Request implements ISendable {
 
     private final String request;
 
-    public Request(String request) {
+    public Request(String request, boolean debug) {
         request = request.replace("\n", "\t").replace("\t", " ").replaceAll(" +", " ");
         StringBuilder sb = new StringBuilder();
         sb.append("{\"query\": \"").append(request).append("\"}");
         this.request = sb.toString();
-        System.out.println(this.request);
+        if (debug)
+            System.out.println(this.request);
+    }
+
+    public Request(String request) {
+        this(request, false);
     }
 
     @Override
