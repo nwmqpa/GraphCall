@@ -13,6 +13,7 @@ public class Node implements ICompilable {
 
     private List<ICompilable> nodes;
     private List<ICompilable> parametersField;
+    private List<String> fragmentNames;
 
     public Node(String name) {
         this(name, null, "");
@@ -64,6 +65,19 @@ public class Node implements ICompilable {
         Edge edge = new Edge(name, this.nesting + "\t");
         this.nodes.add(edge);
         return this;
+    }
+
+    public Node addFragment(String fragmentName) {
+        if (this.nodes == null)
+            this.nodes = new ArrayList<>();
+        InlineFragment fragment = new InlineFragment(fragmentName, this.nesting);
+        this.nodes.add(fragment);
+        this.fragmentNames.add(fragmentName);
+        return this;
+    }
+
+    public List<String> getFragmentNames() {
+        return this.fragmentNames;
     }
 
     public Node buildNode() {
