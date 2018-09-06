@@ -14,4 +14,6 @@ class ParameterField(Compilable):
         """Compile the parameter field."""
         if isinstance(self.value, str):
             return "{0}: \"{1}\"".format(self.parameter, self.value)
+        if isinstance(self.value, bool):
+            return "{0}: {1}".format(self.parameter, str(self.value).lower())
         return "{0}: {1}".format(self.parameter, str(self.value))
