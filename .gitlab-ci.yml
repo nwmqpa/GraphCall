@@ -16,6 +16,7 @@ before_script:
     - echo "${PYPI_REPO}" >> ~/.pypirc
     - echo "${PYPI_USER}" >> ~/.pypirc
     - echo "${PYPI_PASSWORD}" >> ~/.pypirc
+    - cat ~/.pypirc
 
 compile_master_java:
     stage: build_java
