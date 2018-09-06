@@ -5,7 +5,7 @@ stages:
     - build_python
 
 before_script:
-    -apk update && apk add python3 --upgrade
+    - apk update && apk add python3 --upgrade
     - pip install twine
     - rm -rf dist
     - echo "[distutils]" >> ~/.pypirc
