@@ -2,8 +2,22 @@ image: nwmqpa/modbuilder
 
 stages:
     - build_java
+    - build_python
 
-compile_master:
+before_script:
+    - apt-get update && apt-get install -y python3 python3-pip
+    - pip install twine
+    - rm -rf dist
+    - echo "[distutils]" >> ~/.pypirc
+    - echo "index-servers =" >> ~/.pypirc
+    - echo "    nexus" >> ~/.pypirc
+    - echo "" >> ~/.pypirc
+    - echo "[nexus]" >> ~/.pypirc
+    - echo "${PYPI_REPO}" >> ~/.pypirc
+    - echo "${PYPI_USER}" >> ~/.pypirc
+    - echo "${PYPI_PASSWORD}" >> ~/.pypirc
+
+compile_master_java:
     stage: build_java
     only:
         - master
@@ -13,7 +27,7 @@ compile_master:
         - cd java && ./gradlew artifactoryPublish
 
 
-compile_dev:
+compile_dev_java:
     stage: build_java
     only:
         - dev
@@ -21,4 +35,21 @@ compile_dev:
         ORG_GRADLE_PROJECT_repo: "libs-snapshot"
     script:
         - cd java && ./gradlew artifactoryPublish
+
+compile_master_python:
+    stage: build_python
+    only:
+        - master
+    script:
+        - cd python && ./gradlew artifactoryPublish
+
+
+compile_dev_python:
+    stage: build_python
+    only:
+        - dev
+    script:
+        - cd python && python3 setup.py check sdist bdist 
+        - cd python && python3 setup.py sdist bdist_wheel
+        - cd python && twine upload -r nexus dist/*.tar.gz
 
