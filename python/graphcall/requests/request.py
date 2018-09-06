@@ -10,9 +10,9 @@ class Request(object):
     def __init__(self, node: Node) -> None:
         """Initialize the object with a request."""
         self.request = json.dumps({
-            "query": "{" + node.compile().replace("\n", "\t")
+            "query": node.compile().replace("\n", "\t")
                                    .replace("\t", " ")
-                                   .replace(" +", " ") + "}"
+                                   .replace(" +", " ")
         })
 
     def send(self, url: str) -> dict:

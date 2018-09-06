@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="graphcall",
-    version="0.0.7",
+    version="0.0.8",
     author="nwmqpa",
     author_email="thomas.nicollet@epitech.eu",
     description="A lightweight graphQL library",
