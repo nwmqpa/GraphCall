@@ -6,7 +6,7 @@ stages:
 
 before_script:
     - apk update && apk add python3 --upgrade
-    - pip install twine
+    - pip3 install twine
     - rm -rf dist
     - echo "[distutils]" >> ~/.pypirc
     - echo "index-servers =" >> ~/.pypirc
