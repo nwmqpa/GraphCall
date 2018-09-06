@@ -41,9 +41,10 @@ compile_master_python:
     only:
         - master
     script:
-        - cd python && python3 setup.py check sdist bdist 
-        - cd python && python3 setup.py sdist bdist_wheel
-        - cd python && twine upload -r nexus dist/*.tar.gz
+        - cd python
+        - python3 setup.py check sdist bdist 
+        - python3 setup.py sdist bdist_wheel
+        - twine upload -r nexus dist/*.tar.gz
 
 
 compile_dev_python:
