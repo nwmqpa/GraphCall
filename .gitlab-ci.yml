@@ -1,24 +1,24 @@
 image: nwmqpa/modbuilder
 
 stages:
-    - build
+    - build_java
 
 compile_master:
-    stage: build
+    stage: build_java
     only:
         - master
     variables:
         ORG_GRADLE_PROJECT_repo: "libs-release"
     script:
-        - ./gradlew artifactoryPublish
+        - cd java && ./gradlew artifactoryPublish
 
 
 compile_dev:
-    stage: build
+    stage: build_java
     only:
         - dev
     variables:
         ORG_GRADLE_PROJECT_repo: "libs-snapshot"
     script:
-        - ./gradlew artifactoryPublish
+        - cd java && ./gradlew artifactoryPublish
 
