@@ -56,5 +56,6 @@ compile_dev_python:
         - cd python 
         - python3 setup.py check sdist bdist 
         - python3 setup.py sdist bdist_wheel
+        - rm dist/graphcall-*.linux-x86_64.tar.gz
         - twine upload -r nexus dist/*.tar.gz
 
