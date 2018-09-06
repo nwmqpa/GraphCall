@@ -17,7 +17,7 @@ apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
 
-def baseVersion = '0.0.5'
+def baseVersion = '0.0.7'
 version = System.getenv('ORG_GRADLE_PROJECT_repo') == 'libs-snapshot' ? baseVersion + "-SNAPSHOT" : baseVersion
 group = "com.nwmqpa"
 
