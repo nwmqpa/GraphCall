@@ -28,7 +28,7 @@ class Node(Compilable):
         self.nodes.append(
             node
         )
-        return self
+        return node
 
     def compile(self) -> str:
         """Compile the current node into string"""
@@ -50,7 +50,7 @@ class Node(Compilable):
 
     def buildNode(self):
         """Mark the current node as built."""
-        return self.parent
+        return self.parent if self.parent is not None else self
 
     def addParameterField(self, parameter: str, value):
         """Add a parameter field to the current node."""
