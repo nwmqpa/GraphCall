@@ -23,9 +23,9 @@ class Node(Compilable):
         """Add a node to the current node."""
         if self.nodes is None:
             self.nodes = []
-        node = Node("")
+        node = Node("")._init(name, self, self.nesting + "\t")
         self.nodes.append(
-            node._init(name, self, self.nesting + "\t")
+            node
         )
         return self
 
