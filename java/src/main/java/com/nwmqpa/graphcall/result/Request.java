@@ -32,6 +32,7 @@ public class Request implements ISendable {
         OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
         wr.write(this.request);
         wr.flush();
+        wr.close();
         StringBuilder sb = new StringBuilder();
         if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
