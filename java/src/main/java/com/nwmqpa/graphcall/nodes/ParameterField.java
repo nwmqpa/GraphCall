@@ -15,7 +15,7 @@ public class ParameterField implements ICompilable {
     @Override
     public String compile() {
         if (this.value instanceof Integer)
-            return String.format("%s: %d", this.parameter, this.value);
+            return String.format("%s: %d", this.parameter, (int) this.value);
         else if (this.value instanceof Double)
             return String.format("%s: %f", this.parameter, this.value);
         else if (this.value instanceof Boolean)
